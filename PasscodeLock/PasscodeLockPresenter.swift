@@ -45,6 +45,11 @@ open class PasscodeLockPresenter {
         isPasscodePresented = true
 
         mainWindow?.endEditing(true)
+        if #available(iOS 13.0, *) {
+            passcodeLockWindow.overrideUserInterfaceStyle = mainWindow?.overrideUserInterfaceStyle.rawValue == 2 ? .dark : .light
+        } else {
+            // Fallback on earlier versions
+        }
         moveWindowsToFront()
         passcodeLockWindow.isHidden = false
 
